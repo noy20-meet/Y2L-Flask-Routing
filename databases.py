@@ -1,15 +1,17 @@
-from model import Base, Student
+from model import Product,Base,Cart
 
+from sqlalchemy.pool import SingletonThreadPool
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 
 # replace lecture.db with your own database file
-engine = create_engine('sqlite:///lecture.db')
+engine = create_engine('sqlite:///lecture.db',poolclass=SingletonThreadPool)
 Base.metadata.create_all(engine)
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
+
 
 def add_product(name, price, Picture_Link,Description):
 
@@ -18,7 +20,7 @@ def add_product(name, price, Picture_Link,Description):
         price=price,
         Picture_Link=Picture_Link,
         Description=Description)
-    session.add(product_object)
+    session.add(product)
     session.commit()
 
 def update_product(id, price):
@@ -48,9 +50,13 @@ def query_by_id(their_id):
        id=their_id).first()
    return product
 
- def add_To_Cart(productID):
+def add_To_Cart(productID):
 
     carts = Cart(
         productID=productID)
     session.add(carts)
     session.commit()
+
+
+
+

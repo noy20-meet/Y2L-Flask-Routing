@@ -2,13 +2,62 @@
 <html>
 <head>
 	<title></title>
+	<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+</style>
 </head>
 <body>
+<h1 style="text-align:center">your cart</h1>
+<button style="text-align:center">Pay Now</button>
 
-<!-- Delete this section when you reach this file -->
-<h1 style="font-size: 55px;position: absolute;left: 41.5%;top:28%">Cart Function</h1>
-<h1 style="font-size: 70px;position: absolute;left: 40%;bottom:50%">Coming Soon</h1>
-<!-- ------------------ -->
+{%for p in products%} 
+  
+   
 
+
+<div class="card">
+  <img src="{{url_for('static', filename=p.Picture_Link)}}" alt="{{p.name}}" style="width:100%">
+  <h1>{{p.name}}</h1>
+  <p class="price">{{p.price}}</p>
+  <p>{{p.Description}}</p>
+ 
+</div>
+<h2 style="text-align:center">Product </h2>
+
+<!--<div class="card">
+  <img src="{{url_for('static',filename='tal.jpg')}}" alt="tal" style="width:100%">
+  <h1>Tal</h1>
+  <p class="price">$0.99</p>
+  <p>cuties;)</p>
+  <p><button>Add to Cart</button></p>
+</div>-->
+{%endfor%} 
 </body>
 </html>

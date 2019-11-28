@@ -36,23 +36,28 @@
 <body>
 	<h1>shop</h1>
 <h2 style="text-align:center">Product Card</h2>
+{%for p in products%} 
+  
+   
+
 
 <div class="card">
-  <img src="{{url_for('static',filename='one.jpg')}}" alt="Malak and Shiran" style="width:100%">
-  <h1>Malak and Shiran</h1>
-  <p class="price">$To much for you to pay</p>
-  <p>cuties;)</p>
-  <p><button>Add to Cart</button></p>
+  <img src="{{url_for('static', filename=p.Picture_Link)}}" alt="{{p.name}}" style="width:100%">
+  <h1>{{p.name}}</h1>
+  <p class="price">{{p.price}}</p>
+  <p>{{p.Description}}</p>
+  <p><a href="{{url_for('add_to_cart',p_id=p.id)}}"><button>Add to Cart</button></a></p>
 </div>
-<h2 style="text-align:center">Product Card</h2>
+<h2 style="text-align:center">Product </h2>
 
-<div class="card">
+<!--<div class="card">
   <img src="{{url_for('static',filename='tal.jpg')}}" alt="tal" style="width:100%">
   <h1>Tal</h1>
   <p class="price">$0.99</p>
   <p>cuties;)</p>
   <p><button>Add to Cart</button></p>
-</div>
+</div>-->
+{%endfor%} 
 
 
 
